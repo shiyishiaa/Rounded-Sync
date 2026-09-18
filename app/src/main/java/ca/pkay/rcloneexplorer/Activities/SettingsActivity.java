@@ -12,7 +12,6 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import ca.pkay.rcloneexplorer.Settings.FileAccessPreferencesFragment;
 import ca.pkay.rcloneexplorer.Settings.FileAccessSettingsFragment;
 import ca.pkay.rcloneexplorer.Settings.LogPreferencesFragment;
 import ca.pkay.rcloneexplorer.Settings.NotificationPreferencesFragment;
@@ -115,8 +114,6 @@ public class SettingsActivity extends AppCompatActivity implements SettingsFragm
     private void startFileAccessSettingsFragment() {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.flFragment, FileAccessSettingsFragment.newInstance(), SAVED_FRAGMENT);
-        //todo:  for now, use the old one until i can fully migrate the new one.
-        //transaction.replace(R.id.flFragment, new FileAccessPreferencesFragment(), SAVED_FRAGMENT);
         transaction.addToBackStack(null);
         transaction.commit();
     }

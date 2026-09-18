@@ -669,19 +669,6 @@ public class Rclone {
         return serve(protocol, port, allowRemoteAccess, user, password, remote, servePath, null);
     }
 
-    /**
-     * This is only kept for legacy purposes. It was used before md5-checksum was introduced.
-     * @param remoteItem
-     * @param localPath
-     * @param remotePath
-     * @param syncDirection
-     * @return
-     */
-    @Deprecated
-    public Process sync(RemoteItem remoteItem, String localPath, String remotePath, int syncDirection) {
-        return sync(remoteItem, localPath, remotePath, syncDirection, false, new ArrayList<>(0), false);
-    }
-
     public Process sync(RemoteItem remoteItem, String localPath, String remotePath, int syncDirection, boolean useMD5Sum, ArrayList<FilterEntry> filters, boolean deleteExcluded) {
         String[] command;
         String remoteName = remoteItem.getName();

@@ -22,7 +22,6 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         buildConfigField "java.lang.String", "CLI", System.getenv('RCX_BUILD_CLI') ? System.getenv('RCX_BUILD_CLI') : "\"c03129b6-b09f-9cb4-8fcd-7f143b8f94ef\""
         buildConfigField "java.lang.String", "VCP_AUTHORITY", "\"" + applicationId + ".vcp\"";
-        setProperty("archivesBaseName",  "roundsync_v"+versionName)
 
         externalNativeBuild {
             ndkBuild {
@@ -32,6 +31,8 @@ android {
     }
 
     buildFeatures {
+        buildConfig true
+        resValues true
         viewBinding true
     }
 
@@ -47,7 +48,7 @@ android {
         release {
             minifyEnabled true
             shrinkResources true
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             manifestPlaceholders = [
                     appIcon: "@mipmap/ic_launcher",
                     appIconRound: "@mipmap/ic_launcher_round"
@@ -145,6 +146,10 @@ android {
         // Disables dependency metadata when building Android App Bundles.
         includeInBundle = false
     }
+}
+
+base {
+    archivesName = "roundsync_v${android.defaultConfig.versionName}"
 }
 
 repositories {

@@ -75,9 +75,9 @@ def findNdkDir() {
             sdkManagerPath += '.bat'
         }
         try {
-            exec {
+            providers.exec {
                 commandLine sdkManagerPath, "--install", "ndk;${NDK_VERSION}"
-            }
+            }.result.get().assertNormalExitValue()
         } catch (exc) {
             logger.error(exc.toString())
             // NDK installation failed. Just raise an error.
@@ -124,7 +124,7 @@ def getCrossCompiler(abi) {
         os,
         'bin',
         abiToCompiler[abi],
-    )
+    ).toString()
 }
 
 def getOutputPath(abi) {
@@ -141,7 +141,7 @@ def buildRclone(abi) {
 
     return {
         doLast {
-            exec {
+            providers.exec {
                 environment 'GOPATH', GOPATH
                 def crossCompiler = getCrossCompiler(abi)
                 environment 'CC', crossCompiler
@@ -164,7 +164,7 @@ def buildRclone(abi) {
                     getOutputPath(abi),
                     RCLONE_MODULE
                 )
-            }
+            }.result.get().assertNormalExitValue()
         }
     }
 }
@@ -183,17 +183,15 @@ task checkoutRclone(type: Exec, dependsOn: createRcloneModule) {
     workingDir CACHE_PATH
     environment 'GOPATH', GOPATH
 
-    def goVersionOutput = new ByteArrayOutputStream()
-    exec{
+    def goVersionOutput = providers.exec {
         commandLine 'go', 'version'
-        standardOutput = goVersionOutput;
-    }
+    }.standardOutput.asText.get()
 
-    if (goVersionOutput.toString().contains(GO_REQ_VERSION)) {
+    if (goVersionOutput.contains(GO_REQ_VERSION)) {
         println "You are running the required go version."
     } else {
         logger.error("The requred go version is: ${GO_REQ_VERSION}")
-        logger.error( "You are running: ${goVersionOutput}")
+        logger.error("You are running: ${goVersionOutput}")
     }
     println "You are building rclone v${RCLONE_VERSION}"
 
@@ -222,10 +220,10 @@ task buildAll {
 
 task clean {
     doLast {
-        exec {
+        providers.exec {
             environment 'GOPATH', GOPATH
             commandLine 'go', 'clean', '-cache', '-testcache', '-modcache', '-fuzzcache'
-        }
+        }.result.get().assertNormalExitValue()
         delete CACHE_PATH
         delete fileTree(OUTPUT_BASE_PATH).matching {
             include '**/librclone.so'

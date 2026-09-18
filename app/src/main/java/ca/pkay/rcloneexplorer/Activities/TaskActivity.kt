@@ -238,7 +238,10 @@ class TaskActivity : AppCompatActivity(), FolderSelectorCallback{
         taskToPopulate.title = findViewById<EditText>(R.id.task_title_textfield).text.toString()
         val remotename = remoteDropdown.selectedItem.toString()
         taskToPopulate.remoteId = remotename
-        val direction = syncDirection.selectedItemPosition + 1
+        var direction = syncDirection.selectedItemPosition + 1
+        if (existingTask == null && direction == SyncDirectionObject.SYNC_BIDIRECTIONAL) {
+            direction = SyncDirectionObject.SYNC_BIDIRECTIONAL_INITIAL
+        }
         for (ri in rcloneInstance.remotes) {
             if (ri.name == taskToPopulate.remoteId) {
                 taskToPopulate.remoteType = ri.type

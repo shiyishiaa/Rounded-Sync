@@ -287,6 +287,7 @@
     <string-array name="sync_direction_options">
         <item>Sincronitza local a remot</item>
         <item>Sincronitza remot a local</item>
+        <item>@string/bisync</item>
     </string-array>
     <string name="name_will_be_deleted">%1$s serà suprimit</string>
     <plurals name="delete_x_items">
@@ -460,7 +461,7 @@
     <string name="description_sync_direction_sync_toremote">Sincronitza els fitxers de l\'emmagatzematge local al remot. Suprimeix tots els fitxers de l\'emmagatzematge remot que no hi són al local. Només afecta els fitxers de l\'emmagatzematge remot.</string>
     <string name="description_sync_direction_copy_toremote">Copia els fitxers nous o modificats de l\'emmagatzematge local al remot. No suprimeix cap fitxer, els fitxers que ja hi són al remot se sobreescriuen.</string>
     <string name="description_sync_direction_copy_tolocal">Copia els fitxers nous o modificats de l\'emmagatzematge remot al local. No suprimeix cap fitxer, els fitxers que ja hi són al local sobreescriuen.</string>
-    <string name="description_sync_direction_sync_bidirectional">Assegura\'t que l\'emmgatzematge local i el remot tinguin els mateixos fitxers per poder mantenir l\'estructura idèntica de la carpeta en transferir, descarregar o suprimir els fitxers.</string>
+    <string name="description_sync_direction_sync_bidirectional">Sincronitza els canvis en ambdues direccions entre l\'emmagatzematge local i el remot, incloent-hi fitxers nous, modificats i suprimits. La primera execució crea una referència de comparació; les execucions posteriors la fan servir per detectar canvis a qualsevol dels dos costats.</string>
     <string name="filter_type_include">Inclou</string>
     <string name="filter_type_exclude">Exclou</string>
     <string name="intro_success">Fet!</string>

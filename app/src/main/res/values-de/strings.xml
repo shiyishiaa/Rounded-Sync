@@ -249,6 +249,7 @@
     <string-array name="sync_direction_options">
         <item>Lokal zu Remote synchronisieren</item>
         <item>Remote zu lokal synchronisieren</item>
+        <item>@string/bisync</item>
     </string-array>
     <string name="name_will_be_deleted">%1$s werden gelöscht</string>
     <plurals name="delete_x_items">
@@ -435,7 +436,7 @@
     <string name="description_sync_direction_sync_toremote">Synchronisieren Sie Dateien vom lokalen Speicher auf den entfernten Speicher. Alle Dateien, die lokal nicht vorhanden sind, werden auf dem entfernten Speicher gelöscht. Dies betrifft nur die Dateien auf dem entfernten Speicher.</string>
     <string name="description_sync_direction_copy_toremote">Kopiere neue oder geänderte Dateien vom lokalen Speicher zum entfernten Speicher. Dateien werden nicht gelöscht, bestehende Dateien auf dem entfernten Speicher können überschrieben werden.</string>
     <string name="description_sync_direction_copy_tolocal">Kopiere neue oder geänderte Dateien vom entfernten Speicher zum lokalen Speicher. Dateien werden nicht gelöscht, bestehende Dateien auf dem lokalen Speicher können überschrieben werden.</string>
-    <string name="description_sync_direction_sync_bidirectional">Stellt sicher das lokaler und entfernter Speicher identisch sind. Dateien werden gelöscht, geupdated und erstellt nach Bedarf.</string>
+    <string name="description_sync_direction_sync_bidirectional">Synchronisiert Änderungen in beide Richtungen zwischen lokalem und entferntem Speicher, einschließlich neuer, geänderter und gelöschter Dateien. Beim ersten Lauf wird eine Vergleichsbasis erstellt; spätere Läufe erkennen damit Änderungen auf beiden Seiten.</string>
     <string name="intro_success">Erfolg!</string>
     <string name="dynamic_config_unknown_error">Der Anbieter ist unbekannt!</string>
     <string name="toggle_advanced_options">Erweiterte Optionen umschalten</string>

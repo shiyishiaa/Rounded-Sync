@@ -281,6 +281,7 @@
     <string-array name="sync_direction_options">
         <item>同步本地到远程</item>
         <item>同步远程到本地</item>
+        <item>@string/bisync</item>
     </string-array>
     <string name="name_will_be_deleted">%1$s 将被删除</string>
     <plurals name="delete_x_items">
@@ -419,7 +420,7 @@
     <string name="description_sync_direction_sync_toremote">将文件从本地存储同步到远端存储。本地不存在的任何文件都将从远端存储中删除。仅影响远端存储上的文件。</string>
     <string name="description_sync_direction_copy_toremote">将新文件或修改过的文件从本地存储复制到远端存储。不会删除任何文件，远端上的现有文件可能会被覆盖。</string>
     <string name="description_sync_direction_copy_tolocal">将新文件或修改过的文件从远端存储复制到本地存储。不会删除任何文件，本地上的现有文件可能会被覆盖。</string>
-    <string name="description_sync_direction_sync_bidirectional">通过根据需要传输、下载和删除文件来确保本地和远端存储具有相同的文件，以保持相同的文件夹结构。</string>
+    <string name="description_sync_direction_sync_bidirectional">在本地和远端存储之间双向同步更改，包括新建、修改和删除的文件。首次运行会建立比对基准；之后根据基准检测任一侧的更改并同步。</string>
     <string name="intro_success">成功！</string>
     <string name="intro_successful_setup">准备就绪，可以开始了！</string>
     <string name="status_offendingfile">"有问题的文件: "</string>

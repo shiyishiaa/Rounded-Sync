@@ -15,6 +15,7 @@ import androidx.work.Worker
 import androidx.work.WorkerParameters
 import ca.pkay.rcloneexplorer.Database.DatabaseHandler
 import ca.pkay.rcloneexplorer.Items.RemoteItem
+import ca.pkay.rcloneexplorer.Items.SyncDirectionObject
 import ca.pkay.rcloneexplorer.Items.Task
 import ca.pkay.rcloneexplorer.Log2File
 import ca.pkay.rcloneexplorer.R
@@ -168,6 +169,10 @@ class SyncWorker (private var mContext: Context, workerParams: WorkerParameters)
                 mTask.deleteExcluded
             )
             handleSync(mTitle)
+            if (mTask.direction == SyncDirectionObject.SYNC_BIDIRECTIONAL_INITIAL && failureReason == FAILURE_REASON.NO_FAILURE) {
+                mTask.direction = SyncDirectionObject.SYNC_BIDIRECTIONAL
+                mDatabase.updateTask(mTask)
+            }
             sendUploadFinishedBroadcast(remoteItem.name, mTask.remotePath)
         }
     }

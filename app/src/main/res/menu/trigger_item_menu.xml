@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
+        android:id="@+id/action_run_trigger"
+        android:title="@string/run_trigger_now" />
+    <item
         android:id="@+id/action_edit_trigger"
         android:icon="@drawable/ic_edit_black"
         android:title="@string/edit" />

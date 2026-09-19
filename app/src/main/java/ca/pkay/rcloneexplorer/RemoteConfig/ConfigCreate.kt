@@ -17,6 +17,7 @@ class ConfigCreate internal constructor(
     options: ArrayList<String>?,
     formView: View,
     authView: View,
+    private val finishView: View,
     context: Context,
     rclone: Rclone
 ) : AsyncTask<Void?, Void?, Boolean>() {
@@ -37,8 +38,11 @@ class ConfigCreate internal constructor(
 
     override fun onPreExecute() {
         super.onPreExecute()
-        mAuthView.visibility = View.VISIBLE
         mFormView.visibility = View.GONE
+        // Hide the save button separately: the tablet layout places it outside form.
+        finishView.visibility = View.GONE
+        mAuthView.visibility = View.VISIBLE
+        mAuthView.bringToFront()
     }
 
     override fun doInBackground(vararg params: Void?): Boolean {

@@ -104,12 +104,26 @@ class StatusObject(var mContext: Context){
             // when we check stuff, dont show the other messages.
             val checks = mStats.optJSONArray("checking")
             if(checks != null) {
-                var filename = checks.getString(0)
-                if(!filename.equals("")) {
+                val filename = checks.optString(0)
+                val completedChecks = mStats.optInt("checks", 0)
+                val totalChecks = mStats.optInt("totalChecks", 0)
+                val elapsed = prettyPrintDuration(mStats.optInt("elapsedTime", 0))
+                notificationContent = String.format(
+                    mContext.getString(R.string.sync_notification_checking_progress),
+                    completedChecks,
+                    totalChecks,
+                    elapsed
+                )
+                notificationPercent = if (totalChecks > 0) {
+                    (completedChecks * 100 / totalChecks).coerceIn(0, 100)
+                } else {
+                    0
+                }
+                if(filename.isNotEmpty()) {
                     notificationBigText.add(
                         String.format(
                             mContext.getString(R.string.sync_notification_elapsed),
-                            prettyPrintDuration(mStats.getInt("elapsedTime"))
+                            elapsed
                         )
                     )
 
@@ -139,6 +153,32 @@ class StatusObject(var mContext: Context){
             val size = getSize()
             val allsize = getTotalSize()
             val percent: Double = getPercentage()
+
+            val transferredBytes = mStats.optLong("bytes", 0)
+            val totalBytes = mStats.optLong("totalBytes", 0)
+            val completedTransfers = mStats.optInt("transfers", 0)
+            val totalTransfers = mStats.optInt("totalTransfers", 0)
+            val transferPhaseComplete = totalBytes > 0 && transferredBytes >= totalBytes &&
+                (totalTransfers == 0 || completedTransfers >= totalTransfers)
+
+            if (transferPhaseComplete) {
+                val elapsed = prettyPrintDuration(mStats.optInt("elapsedTime", 0))
+                notificationContent = String.format(
+                    mContext.getString(R.string.sync_notification_finalizing),
+                    elapsed
+                )
+                notificationBigText.clear()
+                notificationBigText.add(
+                    String.format(
+                        mContext.getString(R.string.sync_notification_transferred),
+                        size,
+                        allsize
+                    )
+                )
+                notificationBigText.add(notificationContent)
+                notificationPercent = 100
+                return
+            }
 
             notificationContent = String.format(
                 mContext.getString(R.string.sync_notification_short),
@@ -170,11 +210,6 @@ class StatusObject(var mContext: Context){
                     speed
                 )
             )
-
-            var eta = mStats.get("eta")
-            if(eta == null) {
-                eta = "0";
-            }
 
             notificationBigText.add(
                 String.format(

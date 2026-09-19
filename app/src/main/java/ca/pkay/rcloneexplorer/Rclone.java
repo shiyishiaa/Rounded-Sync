@@ -675,8 +675,27 @@ public class Rclone {
         String localRemotePath = (remoteItem.isRemoteType(RemoteItem.LOCAL)) ? getLocalRemotePathPrefix(remoteItem, context)  + "/" : "";
         String remoteSection = (remotePath.compareTo("//" + remoteName) == 0) ? remoteName + ":" + localRemotePath : remoteName + ":" + localRemotePath + remotePath;
 
-        ArrayList<String> defaultParameter = new ArrayList<>(Arrays.asList("--transfers", "1", "--stats=1s", "--stats-log-level", "NOTICE", "--use-json-log"));
+        // A single transfer makes folders with many files unnecessarily slow.
+        // Four is rclone's normal default and remains conservative for phones.
+        ArrayList<String> defaultParameter = new ArrayList<>(Arrays.asList(
+                "--transfers", "4",
+                "--stats=1s",
+                "--stats-log-level", "NOTICE",
+                "--use-json-log",
+                // A VPN can leave an established socket alive without returning
+                // any data. Bound that wait and retry instead of hanging forever.
+                "--contimeout", "15s",
+                "--timeout", "1m",
+                "--low-level-retries", "3",
+                "--retries", "2"
+        ));
         ArrayList<String> directionParameter = new ArrayList<>();
+
+        // Drive can list a whole tree in far fewer API round trips. This is
+        // especially important for the full scans performed by bisync.
+        if (remoteItem.isRemoteType(RemoteItem.GOOGLE_DRIVE)) {
+            defaultParameter.add("--fast-list");
+        }
 
         if(useMD5Sum){
             defaultParameter.add("--checksum");

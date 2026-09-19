@@ -36,6 +36,7 @@ import ca.pkay.rcloneexplorer.Items.Task;
 import ca.pkay.rcloneexplorer.Items.Trigger;
 import ca.pkay.rcloneexplorer.R;
 import ca.pkay.rcloneexplorer.Services.TriggerService;
+import ca.pkay.rcloneexplorer.workmanager.SyncManager;
 import es.dmoral.toasty.Toasty;
 
 public class TriggerRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
@@ -167,6 +168,10 @@ public class TriggerRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerVie
         popupMenu.getMenuInflater().inflate(R.menu.trigger_item_menu, popupMenu.getMenu());
         popupMenu.setOnMenuItemClickListener(item -> {
             switch (item.getItemId()) {
+                case R.id.action_run_trigger:
+                    new SyncManager(context).queue(trigger);
+                    Toasty.info(context, R.string.message_trigger_queued).show();
+                    break;
                 case R.id.action_edit_trigger:
                     editTrigger(trigger);
                     break;

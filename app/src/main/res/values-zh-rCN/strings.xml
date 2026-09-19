@@ -364,6 +364,8 @@
     </plurals>
 
     <string name="sync_notification_short">%s 共 %s ，剩余 %s</string>
+    <string name="sync_notification_checking_progress">正在检查 %1$d/%2$d，已用 %3$s</string>
+    <string name="sync_notification_finalizing">正在完成同步，已用 %1$s</string>
     <string name="abi_not_supported_arm_downgrade">不幸的是，此 Round Sync 版本与您的设备不兼容。试试 armeabi-v7a 的 APK， 从 github.com/newhinton/Round-Sync/releases/latest 下载。</string>
     <string name="abi_not_supported">您的设备不支持此版本的 Round Sync。</string>
     <string name="trigger">触发器</string>
@@ -383,6 +385,8 @@
     <string name="notification_triggerservice_title">触发器服务</string>
     <string name="message_trigger_enabled">已启用触发器</string>
     <string name="message_trigger_disabled">已禁用触发器</string>
+    <string name="run_trigger_now">立即运行</string>
+    <string name="message_trigger_queued">已立即触发任务</string>
     <string name="trigger_time_label">时间:</string>
     <string name="weekday_shorthand_mon">一</string>
     <string name="weekday_shorthand_tue">二</string>

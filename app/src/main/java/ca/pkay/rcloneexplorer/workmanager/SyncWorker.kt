@@ -188,23 +188,26 @@ class SyncWorker (private var mContext: Context, workerParams: WorkerParameters)
                     val line = iterator.next()
                     try {
                         val logline = JSONObject(line)
-                        //todo: migrate this to StatusObject, so that we can handle everything properly.
-                        if (logline.getString("level") == "error") {
+                        val isError = logline.optString("level") == "error"
+                        if (isError) {
                             if (sIsLoggingEnabled) {
                                 log2File?.log(line)
                             }
-                            statusObject.parseLoglineToStatusObject(logline)
-                        } else if (logline.getString("level") == "warning") {
+                        }
+                        // Stats are emitted at NOTICE level. Previously only errors and
+                        // warnings were parsed, so valid progress updates were discarded.
+                        if (isError || logline.has("stats")) {
                             statusObject.parseLoglineToStatusObject(logline)
                         }
-
-                        updateForegroundNotification(mNotificationManager.updateSyncNotification(
-                            title,
-                            statusObject.notificationContent,
-                            statusObject.notificationBigText,
-                            statusObject.notificationPercent,
-                            ongoingNotificationID
-                        ))
+                        if (logline.has("stats")) {
+                            updateForegroundNotification(mNotificationManager.updateSyncNotification(
+                                title,
+                                statusObject.notificationContent,
+                                statusObject.notificationBigText,
+                                statusObject.notificationPercent,
+                                ongoingNotificationID
+                            ))
+                        }
                     } catch (e: JSONException) {
                         FLog.e(TAG, "SyncService-Error: the offending line: $line")
                         //FLog.e(TAG, "onHandleIntent: error reading json", e)
@@ -216,7 +219,10 @@ class SyncWorker (private var mContext: Context, workerParams: WorkerParameters)
                 FLog.e(TAG, "onHandleIntent: error reading stdout", e)
             }
             try {
-                localProcessReference.waitFor()
+                val exitCode = localProcessReference.waitFor()
+                if (exitCode != 0 && failureReason == FAILURE_REASON.NO_FAILURE) {
+                    failureReason = FAILURE_REASON.RCLONE_ERROR
+                }
             } catch (e: InterruptedException) {
                 FLog.e(TAG, "onHandleIntent: error waiting for process", e)
             }

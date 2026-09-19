@@ -193,6 +193,12 @@ class DynamicRemoteConfigFragment(private val mProviderTitle: String, private va
 
         mProvider!!.options.forEach {
 
+            // Match rclone's configurator behavior: Hide bit 2 marks options
+            // that should not be shown in the configuration UI.
+            if(it.hide and 2 != 0) {
+                return@forEach
+            }
+
             if(it.advanced && !mShowAdvanced ) {
                 return@forEach
             }
@@ -533,7 +539,8 @@ class DynamicRemoteConfigFragment(private val mProviderTitle: String, private va
 
         if(mUseOauth){
             mAuthTask = ConfigCreate(
-                options, mFormView!!, mAuthView!!,
+                options, requireView().findViewById<View>(R.id.form), mAuthView!!,
+                mFinishButton!!,
                 requireContext(), rclone!!
             ).execute()
         } else {

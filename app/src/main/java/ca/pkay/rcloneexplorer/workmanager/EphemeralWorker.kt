@@ -214,23 +214,24 @@ class EphemeralWorker (private var mContext: Context, workerParams: WorkerParame
                     val line = iterator.next()
                     try {
                         val logline = JSONObject(line)
-                        //todo: migrate this to StatusObject, so that we can handle everything properly.
-                        if (logline.getString("level") == "error") {
+                        val isError = logline.optString("level") == "error"
+                        if (isError) {
                             if (sIsLoggingEnabled) {
                                 log2File?.log(line)
                             }
-                            statusObject.parseLoglineToStatusObject(logline)
-                        } else if (logline.getString("level") == "warning") {
+                        }
+                        if (isError || logline.has("stats")) {
                             statusObject.parseLoglineToStatusObject(logline)
                         }
-
-                        updateForegroundNotification(mNotificationManager?.updateNotification(
-                            title,
-                            statusObject.notificationContent,
-                            statusObject.notificationBigText,
-                            statusObject.notificationPercent,
-                            ongoingNotificationID
-                        ))
+                        if (logline.has("stats")) {
+                            updateForegroundNotification(mNotificationManager?.updateNotification(
+                                title,
+                                statusObject.notificationContent,
+                                statusObject.notificationBigText,
+                                statusObject.notificationPercent,
+                                ongoingNotificationID
+                            ))
+                        }
                     } catch (e: JSONException) {
                         Log.e(tag(), "Error: the offending line: $line")
                         //FLog.e(TAG, "onHandleIntent: error reading json", e)
@@ -242,7 +243,10 @@ class EphemeralWorker (private var mContext: Context, workerParams: WorkerParame
                 FLog.e(tag(), "onHandleIntent: error reading stdout", e)
             }
             try {
-                localProcessReference.waitFor()
+                val exitCode = localProcessReference.waitFor()
+                if (exitCode != 0 && failureReason == FAILURE_REASON.NO_FAILURE) {
+                    failureReason = FAILURE_REASON.RCLONE_ERROR
+                }
             } catch (e: InterruptedException) {
                 FLog.e(tag(), "onHandleIntent: error waiting for process", e)
             }

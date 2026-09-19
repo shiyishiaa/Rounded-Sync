@@ -393,6 +393,8 @@
     <string name="sync_notification_file_checking">Checking: %14s</string>
     <string name="sync_notification_elapsed">Elapsed: %14s</string>
     <string name="sync_notification_short">%1$s of %2$s, %3$s remaining</string>
+    <string name="sync_notification_checking_progress">Checking %1$d of %2$d, %3$s elapsed</string>
+    <string name="sync_notification_finalizing">Finalizing sync, %1$s elapsed</string>
     <plurals name="modern_prettyprint_duration_d">
         <item quantity="one">%s Day</item>
         <item quantity="other">%s Days</item>
@@ -447,6 +449,8 @@
     <string name="notification_triggerservice_title">Trigger service</string>
     <string name="message_trigger_enabled">Enabled Trigger</string>
     <string name="message_trigger_disabled">Disabled Trigger</string>
+    <string name="run_trigger_now">Run now</string>
+    <string name="message_trigger_queued">Trigger queued</string>
     <string name="trigger_time_label">Time:</string>
     <string name="weekday_shorthand_mon">MON</string>
     <string name="weekday_shorthand_tue">TUE</string>

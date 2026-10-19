@@ -41,8 +41,8 @@ android {
             minifyEnabled false
             shrinkResources false
             manifestPlaceholders = [
-                    appIcon: "@mipmap/ic_launcher_debug",
-                    appIconRound: "@mipmap/ic_launcher_debug_round"
+                    appIcon: "@mipmap/ic_cloud_sync_launcher",
+                    appIconRound: "@mipmap/ic_cloud_sync_launcher"
             ]
         }
         release {
@@ -50,8 +50,8 @@ android {
             shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             manifestPlaceholders = [
-                    appIcon: "@mipmap/ic_launcher",
-                    appIconRound: "@mipmap/ic_launcher_round"
+                    appIcon: "@mipmap/ic_cloud_sync_launcher",
+                    appIconRound: "@mipmap/ic_cloud_sync_launcher"
             ]
             signingConfig signingConfigs.release
         }

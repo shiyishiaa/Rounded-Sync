@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="AppTheme.NoActionBar" parent="AppTheme">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:navigationBarColor">?attr/android:colorBackground</item>
+        <item name="android:windowSplashScreenBackground">@color/cloud_sync_splash_background</item>
+        <item name="android:windowSplashScreenAnimatedIcon">@drawable/ic_cloud_sync_splash</item>
+    </style>
+
+</resources>

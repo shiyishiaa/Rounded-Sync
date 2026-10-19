@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="2160"
+    android:viewportHeight="2160">
+    <group
+        android:translateX="453"
+        android:translateY="453">
+        <path
+            android:fillColor="@color/cloud_sync_splash_icon_color"
+            android:fillType="evenOdd"
+            android:pathData="M627,228 C468,228 335,336 296,489 C295,492 291,493 285,494 C161,523 69,634 69,766 C69,912 179,1031 325,1031 L627,1031 L929,1031 C1075,1031 1185,912 1185,766 C1185,634 1093,523 969,494 C963,493 959,492 958,489 C919,336 786,228 627,228 Z M627,329 C511,329 413,412 391,521 C384,556 365,577 328,583 C237,597 169,674 169,766 C169,863 242,940 337,940 L917,940 C1012,940 1085,863 1085,766 C1085,674 1017,597 926,583 C889,577 870,556 863,521 C841,412 743,329 627,329 Z" />
+        <group
+            android:pivotX="627"
+            android:pivotY="710"
+            android:scaleX="0.82"
+            android:scaleY="0.82"
+            android:translateY="-18">
+            <path
+                android:fillColor="@color/cloud_sync_splash_icon_color"
+                android:pathData="M455,604 C491,543 555,506 626,506 C715,506 791,563 813,647 L813,650 L815,641 C823,627 837,624 849,633 C861,641 863,654 855,666 L810,727 C803,738 790,741 779,732 L720,687 C707,677 708,664 716,653 C724,642 738,640 750,648 C729,598 681,566 626,566 C577,566 532,592 506,634 C497,649 480,653 465,643 C451,635 447,619 455,604 Z" />
+            <path
+                android:fillColor="@color/cloud_sync_splash_icon_color"
+                android:pathData="M799,817 C763,878 699,915 628,915 C539,915 463,858 441,774 L441,771 L439,780 C431,794 417,797 405,788 C393,780 391,767 399,755 L444,694 C451,683 464,680 475,689 L534,734 C547,744 546,757 538,768 C530,779 516,781 504,773 C525,823 573,855 628,855 C677,855 722,829 748,787 C757,772 774,768 789,778 C803,786 807,802 799,817 Z" />
+        </group>
+    </group>
+</vector>

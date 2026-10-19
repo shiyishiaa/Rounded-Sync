@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <color name="cloud_sync_splash_icon_color">@android:color/system_accent1_200</color>
+    <color name="cloud_sync_splash_background">@android:color/system_neutral1_900</color>
     <color name="textColorHighlight">@color/md_theme_dark_primary</color>
 </resources>

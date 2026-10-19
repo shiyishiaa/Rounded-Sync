@@ -181,6 +181,11 @@ tasks.register('createRcloneModule', Exec) {
 
 tasks.register('checkoutRclone', Exec) {
     dependsOn createRcloneModule
+    inputs.property('rcloneVersion', RCLONE_VERSION)
+    outputs.files(
+        Paths.get(CACHE_PATH, 'go.mod').toFile(),
+        Paths.get(CACHE_PATH, 'go.sum').toFile(),
+    )
     workingDir CACHE_PATH
     environment 'GOPATH', GOPATH
 
@@ -201,21 +206,57 @@ tasks.register('checkoutRclone', Exec) {
 
 tasks.register('buildArm') {
     dependsOn checkoutRclone
+    inputs.property('abi', 'armeabi-v7a')
+    inputs.property('rcloneVersion', RCLONE_VERSION)
+    inputs.property('ndkVersion', NDK_VERSION)
+    inputs.property('ndkToolchainVersion', NDK_TOOLCHAIN_VERSION)
+    inputs.files(
+        Paths.get(CACHE_PATH, 'go.mod').toFile(),
+        Paths.get(CACHE_PATH, 'go.sum').toFile(),
+    )
+    outputs.file(getOutputPath('armeabi-v7a'))
     configure buildRclone('armeabi-v7a')
 }
 
 tasks.register('buildArm64') {
     dependsOn checkoutRclone
+    inputs.property('abi', 'arm64-v8a')
+    inputs.property('rcloneVersion', RCLONE_VERSION)
+    inputs.property('ndkVersion', NDK_VERSION)
+    inputs.property('ndkToolchainVersion', NDK_TOOLCHAIN_VERSION)
+    inputs.files(
+        Paths.get(CACHE_PATH, 'go.mod').toFile(),
+        Paths.get(CACHE_PATH, 'go.sum').toFile(),
+    )
+    outputs.file(getOutputPath('arm64-v8a'))
     configure buildRclone('arm64-v8a')
 }
 
 tasks.register('buildx86') {
     dependsOn checkoutRclone
+    inputs.property('abi', 'x86')
+    inputs.property('rcloneVersion', RCLONE_VERSION)
+    inputs.property('ndkVersion', NDK_VERSION)
+    inputs.property('ndkToolchainVersion', NDK_TOOLCHAIN_VERSION)
+    inputs.files(
+        Paths.get(CACHE_PATH, 'go.mod').toFile(),
+        Paths.get(CACHE_PATH, 'go.sum').toFile(),
+    )
+    outputs.file(getOutputPath('x86'))
     configure buildRclone('x86')
 }
 
 tasks.register('buildx64') {
     dependsOn checkoutRclone
+    inputs.property('abi', 'x86_64')
+    inputs.property('rcloneVersion', RCLONE_VERSION)
+    inputs.property('ndkVersion', NDK_VERSION)
+    inputs.property('ndkToolchainVersion', NDK_TOOLCHAIN_VERSION)
+    inputs.files(
+        Paths.get(CACHE_PATH, 'go.mod').toFile(),
+        Paths.get(CACHE_PATH, 'go.sum').toFile(),
+    )
+    outputs.file(getOutputPath('x86_64'))
     configure buildRclone('x86_64')
 }
 

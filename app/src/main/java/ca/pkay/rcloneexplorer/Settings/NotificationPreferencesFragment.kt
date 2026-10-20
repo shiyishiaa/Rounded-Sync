@@ -21,6 +21,7 @@ class NotificationPreferencesFragment : PreferenceFragmentCompat(),
 
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         setPreferencesFromResource(R.xml.settings_notification_preferences, rootKey)
+        preferenceScreen.removeUnusedIconSpacingRecursively()
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(requireContext())
         requireActivity().title = getString(R.string.notifications_pref_title)
 

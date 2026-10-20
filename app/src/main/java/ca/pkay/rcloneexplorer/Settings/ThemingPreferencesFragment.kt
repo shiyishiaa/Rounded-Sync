@@ -14,6 +14,7 @@ class ThemingPreferencesFragment : PreferenceFragmentCompat(),
 
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         setPreferencesFromResource(R.xml.settings_theming_preferences, rootKey)
+        preferenceScreen.removeUnusedIconSpacingRecursively()
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(requireContext())
         requireActivity().title = getString(R.string.look_and_feel)
 

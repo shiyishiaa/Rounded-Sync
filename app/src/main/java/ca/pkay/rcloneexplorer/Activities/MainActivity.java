@@ -23,7 +23,6 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.SubMenu;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -144,7 +143,7 @@ public class MainActivity extends AppCompatActivity
         drawer = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-        positionNavigationHeaderBelowStatusBar();
+        centerNavigationHeaderInVisibleArea();
 
         rclone = new Rclone(this);
 
@@ -227,9 +226,8 @@ public class MainActivity extends AppCompatActivity
         (new UpdateChecker(this)).schedule();
     }
 
-    private void positionNavigationHeaderBelowStatusBar() {
+    private void centerNavigationHeaderInVisibleArea() {
         View header = navigationView.getHeaderView(0);
-        int contentHeight = getResources().getDimensionPixelSize(R.dimen.nav_header_height);
         int contentPaddingTop = header.getPaddingTop();
 
         header.post(() -> {
@@ -238,17 +236,10 @@ public class MainActivity extends AppCompatActivity
                 return;
             }
 
-            int statusBarBottom = windowInsets.getInsets(WindowInsetsCompat.Type.statusBars()).top;
-            int[] headerLocation = new int[2];
-            header.getLocationOnScreen(headerLocation);
-            int coveredHeight = Math.max(0, statusBarBottom - headerLocation[1]);
-
-            ViewGroup.LayoutParams layoutParams = header.getLayoutParams();
-            layoutParams.height = contentHeight + coveredHeight;
-            header.setLayoutParams(layoutParams);
+            int statusBarHeight = windowInsets.getInsets(WindowInsetsCompat.Type.statusBars()).top;
             header.setPadding(
                     header.getPaddingLeft(),
-                    contentPaddingTop + coveredHeight,
+                    contentPaddingTop + statusBarHeight,
                     header.getPaddingRight(),
                     header.getPaddingBottom()
             );

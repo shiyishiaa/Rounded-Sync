@@ -12,48 +12,33 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:animateLayoutChanges="false"
-        android:background="@android:color/transparent"
-        android:paddingStart="6dp"
-        android:paddingEnd="6dp"
+        android:background="?attr/colorSurface"
         app:elevation="0dp">
 
-        <FrameLayout
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:animateLayoutChanges="false">
-
-            <com.google.android.material.card.MaterialCardView
-                style="@style/MainViewToolbar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="4dp"
-                android:animateLayoutChanges="false"
-                android:theme="@style/MainViewToolbar"
-                app:cardCornerRadius="@dimen/cardCornerRadius"
-                app:cardElevation="2dp"
-                app:strokeWidth="0dp">
-
-                <androidx.appcompat.widget.Toolbar
-                    android:id="@+id/toolbar"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:animateLayoutChanges="false"
-                    android:orientation="horizontal"
-                    android:theme="@style/MainViewToolbar">
+            android:layout_height="@dimen/main_toolbar_height"
+            android:animateLayoutChanges="false"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:theme="@style/MainTopAppBar"
+            app:contentInsetEndWithActions="8dp"
+            app:contentInsetStartWithNavigation="8dp">
 
                     <LinearLayout
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="match_parent"
+                        android:layout_gravity="end"
                         android:animateLayoutChanges="false"
                         android:orientation="horizontal"
                         android:visibility="visible">
 
                         <LinearLayout
                             android:id="@+id/search_bar"
-                            android:layout_width="wrap_content"
+                            android:layout_width="240dp"
                             android:layout_height="match_parent"
-                            android:layout_weight="4"
-                            android:visibility="invisible">
+                            android:visibility="gone">
 
                             <EditText
                                 android:id="@+id/search_field"
@@ -86,14 +71,11 @@
                             android:layout_height="48dp"
                             android:background="@android:color/transparent"
                             android:contentDescription="@string/search"
-                            android:visibility="invisible"
+                            android:visibility="gone"
                             app:srcCompat="@drawable/ic_search" />
 
                     </LinearLayout>
-                </androidx.appcompat.widget.Toolbar>
-
-            </com.google.android.material.card.MaterialCardView>
-        </FrameLayout>
+        </androidx.appcompat.widget.Toolbar>
 
         <de.felixnuesse.ui.BreadcrumbView
             android:id="@+id/breadcrumb_view"

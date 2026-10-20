@@ -17,6 +17,7 @@
     <dimen name="filepicker_row_padding">8dp</dimen>
     <dimen name="cardCornerRadius">16dp</dimen>
     <dimen name="cardPadding">16dp</dimen>
+    <dimen name="main_toolbar_height">64dp</dimen>
     <dimen name="dialogCornerRadius">16dp</dimen>
     <dimen name="dialogPadding">2dp</dimen>
 

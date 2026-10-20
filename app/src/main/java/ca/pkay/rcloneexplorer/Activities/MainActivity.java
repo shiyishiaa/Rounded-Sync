@@ -322,7 +322,7 @@ public class MainActivity extends AppCompatActivity
 
         // Always hide search icon when fragments go back
         View searchButton = this.findViewById(R.id.searchButton);
-        searchButton.setVisibility(View.INVISIBLE);
+        searchButton.setVisibility(View.GONE);
 
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
@@ -352,7 +352,7 @@ public class MainActivity extends AppCompatActivity
 
         // Always hide search icon when fragments go back
         View searchButton = this.findViewById(R.id.searchButton);
-        searchButton.setVisibility(View.INVISIBLE);
+        searchButton.setVisibility(View.GONE);
 
         int id = item.getItemId();
         navigationView.setCheckedItem(id);
@@ -481,6 +481,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     public void startRemotesFragment() {
+        setTitle(R.string.remotes_toolbar_title);
         fragment = RemotesFragment.newInstance();
         FragmentManager fragmentManager = getSupportFragmentManager();
 

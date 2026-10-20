@@ -767,7 +767,7 @@ public class FileExplorerFragment extends Fragment implements   FileExplorerRecy
         InputMethodManager keyboard = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
 
         if (isSearchMode) {
-            searchBar.setVisibility(View.INVISIBLE);
+            searchBar.setVisibility(View.GONE);
             searchButton.setVisibility(View.VISIBLE);
             searchDirContent("");
             ((EditText)searchBar.findViewById(R.id.search_field)).setText("");

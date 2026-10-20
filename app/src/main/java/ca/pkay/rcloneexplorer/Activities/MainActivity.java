@@ -20,6 +20,7 @@ import android.text.InputType;
 import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.SubMenu;
 import android.view.View;
 import android.widget.Toast;
@@ -106,6 +107,9 @@ public class MainActivity extends AppCompatActivity
     private Context context;
     private HashMap<Integer, RemoteItem> drawerPinnedRemoteIds;
     private int availableDrawerPinnedRemoteId;
+    private float drawerGestureStartX;
+    private float drawerGestureStartY;
+    private boolean trackingDrawerGesture;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -252,6 +256,40 @@ public class MainActivity extends AppCompatActivity
 
     public void openNavigationDrawer() {
         drawer.openDrawer(GravityCompat.START);
+    }
+
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent event) {
+        if (fragment instanceof RemotesFragment && !drawer.isDrawerOpen(GravityCompat.START)) {
+            float density = getResources().getDisplayMetrics().density;
+            switch (event.getActionMasked()) {
+                case MotionEvent.ACTION_DOWN:
+                    drawerGestureStartX = event.getX();
+                    drawerGestureStartY = event.getY();
+                    trackingDrawerGesture = true;
+                    break;
+                case MotionEvent.ACTION_MOVE:
+                    if (trackingDrawerGesture) {
+                        float distanceX = event.getX() - drawerGestureStartX;
+                        float distanceY = event.getY() - drawerGestureStartY;
+                        boolean horizontalSwipe = Math.abs(distanceX) >= 56 * density
+                                && Math.abs(distanceX) > Math.abs(distanceY) * 1.25f;
+                        boolean swipeRight = distanceX > 0;
+                        if (horizontalSwipe && swipeRight) {
+                            trackingDrawerGesture = false;
+                            openNavigationDrawer();
+                        }
+                    }
+                    break;
+                case MotionEvent.ACTION_UP:
+                case MotionEvent.ACTION_CANCEL:
+                    trackingDrawerGesture = false;
+                    break;
+            }
+        } else {
+            trackingDrawerGesture = false;
+        }
+        return super.dispatchTouchEvent(event);
     }
 
     @Override

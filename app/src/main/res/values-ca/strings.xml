@@ -496,6 +496,7 @@
     <string name="intro_notifications_title">Notifica\'m!</string>
     <string name="intro_notifications_description">Volem mostrar-te les notificacions quan et sincronitzem els fitxers, concedeix-nos permís. No t\'enviarem correu brossa!</string>
     <string name="error_getting_config">No hem pogut carregar la configuració!</string>
+    <string name="notification_reports_title">Informes de sincronització</string>
     <string name="notification_reports">Crea informes per a les sincronitzacions. Substitueix les notificacions singulars per una de global.</string>
     <string name="back">Endarrere</string>
     <string name="save">Desa</string>
@@ -597,4 +598,8 @@
     <string name="pref_proxy_password">Contrasenya</string>
     <string name="intro_update_checks_title">Notificacions d\'actualització</string>
     <string name="intro_update_checks_description">Si vols rebre actualitzacions pots habilitar l\'interruptor que hi ha a sota! Quan hi hagi una actualització t\'ho farem saber i podràs triar si instal·lar-la o no.</string>
+    <string name="sync_notification_checking_progress">Comprovant %1$d de %2$d, temps transcorregut: %3$s</string>
+    <string name="sync_notification_finalizing">Finalitzant la sincronització, temps transcorregut: %1$s</string>
+    <string name="run_trigger_now">Executa ara</string>
+    <string name="message_trigger_queued">Disparador afegit a la cua</string>
 </resources>

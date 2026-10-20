@@ -17,7 +17,7 @@
         <SwitchPreference
             android:defaultValue="false"
             android:key="@string/pref_key_app_notification_reports"
-            android:title="Switch preference"
+            android:title="@string/notification_reports_title"
             app:summary="@string/notification_reports" />
 
         <de.felixnuesse.extract.settings.preferences.ButtonPreference

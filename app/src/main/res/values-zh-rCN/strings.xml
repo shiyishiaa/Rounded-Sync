@@ -204,8 +204,8 @@
     <string name="dialog_go_to_title">转到</string>
     <string name="go_to">转到</string>
     <string name="set_default_for_all_sftp_ssh_remotes">为所有 SFTP/SSH 远端设置默认值</string>
-    <string name="sftp_home">home</string>
-    <string name="sftp_root">root</string>
+    <string name="sftp_home">主目录</string>
+    <string name="sftp_root">根目录</string>
     <string name="menu_select_storage">存储</string>
     <string name="select_storage">选择存储</string>
     <string name="empty_trash_confirmation">您确定要清空回收站吗？</string>
@@ -433,8 +433,8 @@
     <string name="task_hint_md5checksum">这将使用校验和而不是文件大小。可能需要更长的时间或使用更多的电池。</string>
     <string name="shortcut_start_service">已开始同步</string>
     <string name="shortcut_missing_id">无法启动同步</string>
-    <string name="task_copy_suffix">(Copy)</string>
-    <string name="trigger_copy_suffix">(Copy)</string>
+    <string name="task_copy_suffix">（副本）</string>
+    <string name="trigger_copy_suffix">（副本）</string>
     <string name="trigger_label_weekdays">星期</string>
     <string name="sync_service_notification_channel_title">同步服务</string>
     <string name="sync_service_notification_channel_success_title">同步成功</string>
@@ -457,6 +457,7 @@
     <string name="intro_notifications_title">授予通知权限！</string>
     <string name="intro_notifications_description">我们需要在同步您的文件时向您显示通知，因此请授予我们发布通知的权限。我们不会向您发送垃圾消息！</string>
     <string name="error_getting_config">我们无法加载您的配置！</string>
+    <string name="notification_reports_title">同步报告</string>
     <string name="notification_reports">为同步创建报告。将单个通知替换为统一的通知。</string>
     <string name="back">返回</string>
     <string name="save">保存</string>
@@ -523,4 +524,76 @@
     <string name="worker_move_success">移动成功</string>
     <string name="worker_download_initialtitle">下载中…</string>
     <string name="worker_upload_initialtitle">上传中…</string>
+    <!-- Previously missing translations -->
+    <string name="open_notification_settings_title">更多通知设置</string>
+    <string name="open_notification_settings_summary">打开系统设置，进一步调整通知方式</string>
+    <string name="open_notification_settings_button">打开</string>
+    <string name="app_update_notification_description">发现版本 %1$s，是否安装？</string>
+    <string name="app_updates_notification_action_ignore">忽略更新</string>
+    <string name="app_updates_notification_action_apply">安装更新</string>
+    <string name="app_update_notification_channel_name">更新通知</string>
+    <string name="app_update_notification_channel_description">显示与应用更新相关的通知</string>
+    <string name="settings_general_appshortcut_icon_description">应用快捷方式</string>
+    <string name="title_activity_filter">新建过滤器</string>
+    <string name="task_edit_label_filter">过滤器</string>
+    <string name="task_edit_hint_filter">**/.thumbnails/**</string>
+    <string name="task_edit_filter_nofilter">不过滤</string>
+    <string name="task_edit_description_filter">选择一个过滤器来匹配文件或文件夹。每次只能选择一个过滤器；若不使用过滤器，请在下拉列表中选择“不过滤”。</string>
+    <string name="task_edit_exclude_delete_toggle_text">从目标位置删除被排除的文件</string>
+    <string name="task_edit_filter_options_button">过滤器选项</string>
+    <string name="filter_edit_label_name">基本信息</string>
+    <string name="filter_edit_label_filters">过滤规则</string>
+    <string name="filter_edit_hint_title">名称</string>
+    <string name="filter_edit_add_filter_button">添加规则</string>
+    <string name="filter_data_validation_error_no_title">请为过滤器命名</string>
+    <string name="filter_entry_filter_text">**/.thumbnails/**</string>
+    <string name="filter_entry_filtertype_include">包含</string>
+    <string name="filter_entry_filtertype_exclude">排除</string>
+    <string name="filteractivity_filter_not_found">找不到指定的过滤器。</string>
+    <string name="add_filter">添加过滤器</string>
+    <string name="filter_type_include">包含</string>
+    <string name="filter_type_exclude">排除</string>
+    <string name="breadcrumb_home_description">远程存储根目录</string>
+    <string name="breadcrumb_next_description">下一级路径箭头</string>
+    <string name="appupdate_incompatible">此更新与您的设备不兼容！</string>
+    <string name="appupdate_outofstorage">可用空间不足，无法安装此应用！</string>
+    <string name="appupdate_corrupted">下载的 APK 已损坏！</string>
+    <string name="appupdate_conflicting">新版本与已安装的应用不匹配！</string>
+    <string name="is_this_trigger_enabled">是否启用此触发器？</string>
+    <string name="messages_header">消息</string>
+    <string name="sync_header">同步</string>
+    <string name="signature_title">您的签名</string>
+    <string name="reply_title">默认回复操作</string>
+    <string name="sync_title">定期同步电子邮件</string>
+    <string name="attachment_title">下载收到的附件</string>
+    <string name="attachment_summary_on">自动下载收到的电子邮件附件</string>
+    <string name="attachment_summary_off">仅在手动请求时下载附件</string>
+    <string name="wrap_filenames_summary">文件名过长时会从中间截断，否则将分多行显示。</string>
+    <string name="pref_send_sigquit_button">终止！</string>
+    <string name="app_update_title">更新</string>
+    <string name="preference_dialog_filesize_label">文件大小</string>
+    <string name="preference_category_header_thumbnails">缩略图</string>
+    <string name="preference_category_header_proxy">代理</string>
+    <string name="preference_category_header_background_work">后台任务</string>
+    <string name="preference_category_header_logging">日志</string>
+    <string name="preference_category_header_rclone">Rclone</string>
+    <string name="preference_category_header_updates">更新</string>
+    <string name="preference_category_header_reports">报告</string>
+    <string name="pref_proxy_user">用户名</string>
+    <string name="pref_proxy_password">密码</string>
+    <string name="intro_update_checks_title">更新通知</string>
+    <string name="intro_update_checks_description">如果希望接收更新，可启用下方开关。发现新版本时，我们会通知您，届时您可以选择是否安装。</string>
+
+    <plurals name="worker_deleting_success_message">
+        <item quantity="other">已删除 %s。</item>
+    </plurals>
+    <plurals name="worker_move_success_message">
+        <item quantity="other">已移动 %s。</item>
+    </plurals>
+    <plurals name="worker_download_success_message">
+        <item quantity="other">已下载 %s 个文件！</item>
+    </plurals>
+    <plurals name="worker_upload_success_message">
+        <item quantity="other">已上传 %s 个文件！</item>
+    </plurals>
 </resources>

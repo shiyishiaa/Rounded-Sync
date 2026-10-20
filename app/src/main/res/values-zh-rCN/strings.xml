@@ -1,7 +1,7 @@
 <resources>
-    <string name="app_name">Round Sync</string>
+    <string name="app_name">Rounded Sync</string>
     <string name="app_description">Rclone 为 Android</string>
-    <string name="app_short_name">Round Sync</string>
+    <string name="app_short_name">Rounded Sync</string>
 
     <string name="title_activity_about">关于</string>
     <string name="title_activity_changelog">更新日志</string>

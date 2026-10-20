@@ -23,6 +23,7 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.SubMenu;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -32,6 +33,8 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -141,6 +144,7 @@ public class MainActivity extends AppCompatActivity
         drawer = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        positionNavigationHeaderBelowStatusBar();
 
         rclone = new Rclone(this);
 
@@ -221,6 +225,34 @@ public class MainActivity extends AppCompatActivity
         triggerService.queueTrigger();
 
         (new UpdateChecker(this)).schedule();
+    }
+
+    private void positionNavigationHeaderBelowStatusBar() {
+        View header = navigationView.getHeaderView(0);
+        int contentHeight = getResources().getDimensionPixelSize(R.dimen.nav_header_height);
+        int contentPaddingTop = header.getPaddingTop();
+
+        header.post(() -> {
+            WindowInsetsCompat windowInsets = ViewCompat.getRootWindowInsets(header);
+            if (windowInsets == null) {
+                return;
+            }
+
+            int statusBarBottom = windowInsets.getInsets(WindowInsetsCompat.Type.statusBars()).top;
+            int[] headerLocation = new int[2];
+            header.getLocationOnScreen(headerLocation);
+            int coveredHeight = Math.max(0, statusBarBottom - headerLocation[1]);
+
+            ViewGroup.LayoutParams layoutParams = header.getLayoutParams();
+            layoutParams.height = contentHeight + coveredHeight;
+            header.setLayoutParams(layoutParams);
+            header.setPadding(
+                    header.getPaddingLeft(),
+                    contentPaddingTop + coveredHeight,
+                    header.getPaddingRight(),
+                    header.getPaddingBottom()
+            );
+        });
     }
 
     @Override
